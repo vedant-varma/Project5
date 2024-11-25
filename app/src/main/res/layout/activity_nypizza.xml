@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="95dp"
+        android:layout_marginTop="75dp"
+        android:layout_marginEnd="95dp"
+        android:text="NYC Pizza"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/typeSpinner"
+        android:layout_width="375dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="367dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="39dp"
+        android:layout_marginEnd="28dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/typeSpinner">
+
+        <RadioButton
+            android:id="@+id/smallButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Small" />
+
+        <RadioButton
+            android:id="@+id/mediumButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Medium" />
+
+        <RadioButton
+            android:id="@+id/largeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Large" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/crustLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="182dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Crust: "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+    <ListView
+        android:id="@+id/availableToppingsListView"
+        android:layout_width="164dp"
+        android:layout_height="202dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="29dp"
+        android:layout_marginEnd="39dp"
+        app:layout_constraintEnd_toStartOf="@+id/chosenToppingsListView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/crustLabel" />
+
+    <ListView
+        android:id="@+id/chosenToppingsListView"
+        android:layout_width="164dp"
+        android:layout_height="202dp"
+        android:layout_marginStart="39dp"
+        android:layout_marginTop="29dp"
+        app:layout_constraintStart_toEndOf="@+id/availableToppingsListView"
+        app:layout_constraintTop_toBottomOf="@+id/crustLabel" />
+
+    <Button
+        android:id="@+id/selectToppingButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="22dp"
+        android:text="Add Topping"
+        app:layout_constraintBottom_toTopOf="@+id/addToOrderButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/availableToppingsListView" />
+
+    <Button
+        android:id="@+id/removeToppingButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginBottom="22dp"
+        android:text="Remove Topping"
+        app:layout_constraintBottom_toTopOf="@+id/addToOrderButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chosenToppingsListView" />
+
+    <Button
+        android:id="@+id/addToOrderButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="123dp"
+        android:layout_marginEnd="159dp"
+        android:layout_marginBottom="16dp"
+        android:text="Add to Order"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

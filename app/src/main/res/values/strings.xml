@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">RU Pizzeria</string>
+    <string name="spinner_prompt">Type</string>
+</resources>
