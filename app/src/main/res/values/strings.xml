@@ -1,4 +1,32 @@
 <resources>
     <string name="app_name">RU Pizzeria</string>
-    <string name="spinner_prompt">Type</string>
+
+    <!-- Main Activity -->
+    <string name="main_title">RU PIZZERIA</string>
+    <string name="current_order">Current Order</string>
+    <string name="placed_orders">Placed Orders</string>
+    <string name="chicago_style">Chicago Style</string>
+    <string name="nyc_style">New York Style</string>
+
+    <!-- Pizza Activities -->
+    <string name="chicago_pizza_title">Chicago Style Pizza</string>
+    <string name="nyc_pizza_title">New York Style Pizza</string>
+    <string name="select_pizza_type">Select Pizza Type</string>
+    <string name="size_small">Small</string>
+    <string name="size_medium">Medium</string>
+    <string name="size_large">Large</string>
+    <string name="crust_label">Crust: %s</string>
+    <string name="available_toppings">Available Toppings</string>
+    <string name="chosen_toppings">Selected Toppings</string>
+    <string name="add_topping">Add Topping</string>
+    <string name="remove_topping">Remove Topping</string>
+    <string name="add_to_order">Add to Order</string>
+
+    <!-- Messages -->
+    <string name="topping_added">Topping added</string>
+    <string name="topping_removed">Topping removed</string>
+    <string name="pizza_added">Pizza added to order</string>
+    <string name="max_toppings_title">Maximum Toppings</string>
+    <string name="max_toppings_message">Cannot add more than 7 toppings to a pizza.</string>
+    <string name="price_format">Price: $%.2f</string>
 </resources>
