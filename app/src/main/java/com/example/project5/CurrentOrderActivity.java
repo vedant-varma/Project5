@@ -1,8 +1,10 @@
 package com.example.project5;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +29,9 @@ public class CurrentOrderActivity extends AppCompatActivity {
     private Button placeOrderButton;
     private ArrayAdapter<Pizza> pizzaAdapter;
     private static final double SALES_TAX_RATE = 0.06625;
+    private ImageButton homeButton;
+    private AllOrders allOrders;
+    private Order currentOrder;
 
     /**
      * Initializes the activity, sets up UI components and event handlers
@@ -36,6 +41,8 @@ public class CurrentOrderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_current_order);
+        allOrders = AllOrders.getInstance();
+        currentOrder = allOrders.getCurrentOrder();
 
         initializeViews();
         setupListView();
@@ -53,6 +60,7 @@ public class CurrentOrderActivity extends AppCompatActivity {
         orderTotalValue = findViewById(R.id.orderTotalValue);
         removePizzaButton = findViewById(R.id.removePizzaButton);
         placeOrderButton = findViewById(R.id.placeOrderButton);
+        homeButton = findViewById(R.id.homeButton);
 
         // Disable buttons initially if order is empty
         boolean orderEmpty = AllOrders.getInstance().getCurrentOrder().getPizzas().isEmpty();
@@ -66,7 +74,7 @@ public class CurrentOrderActivity extends AppCompatActivity {
     private void setupListView() {
         pizzaAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_single_choice,
-                AllOrders.getInstance().getCurrentOrder().getPizzas());
+                currentOrder.getPizzas());
 
         pizzaListView.setAdapter(pizzaAdapter);
         pizzaListView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
@@ -78,6 +86,7 @@ public class CurrentOrderActivity extends AppCompatActivity {
     private void setupButtons() {
         removePizzaButton.setOnClickListener(v -> handleRemovePizza());
         placeOrderButton.setOnClickListener(v -> handlePlaceOrder());
+        homeButton.setOnClickListener(v -> handleHomeButton());
     }
 
     /**
@@ -86,7 +95,6 @@ public class CurrentOrderActivity extends AppCompatActivity {
     private void handleRemovePizza() {
         int position = pizzaListView.getCheckedItemPosition();
         if (position != ListView.INVALID_POSITION) {
-            Order currentOrder = AllOrders.getInstance().getCurrentOrder();
             if (position < currentOrder.getPizzas().size()) {
                 currentOrder.getPizzas().remove(position);
                 pizzaAdapter.notifyDataSetChanged();
@@ -111,7 +119,6 @@ public class CurrentOrderActivity extends AppCompatActivity {
      * Handles placing the current order
      */
     private void handlePlaceOrder() {
-        Order currentOrder = AllOrders.getInstance().getCurrentOrder();
         if (currentOrder.getPizzas().isEmpty()) {
             showAlert("Empty Order", "Cannot place an empty order");
             return;
@@ -121,12 +128,24 @@ public class CurrentOrderActivity extends AppCompatActivity {
         builder.setTitle("Confirm Order")
                 .setMessage("Place this order?")
                 .setPositiveButton("Yes", (dialog, id) -> {
-                    AllOrders.getInstance().placeCurrentOrder();
-                    pizzaAdapter.clear();
+                    // Place the order
+                    allOrders.placeCurrentOrder();
+
+                    // Update currentOrder reference
+                    currentOrder = allOrders.getCurrentOrder();
+
+                    // Reinitialize the adapter with the new currentOrder's pizzas list
+                    pizzaAdapter = new ArrayAdapter<>(CurrentOrderActivity.this,
+                            android.R.layout.simple_list_item_single_choice,
+                            currentOrder.getPizzas());
+                    pizzaListView.setAdapter(pizzaAdapter);
+
                     updateOrderTotals();
+
                     Toast.makeText(this,
                             "Order placed successfully",
                             Toast.LENGTH_SHORT).show();
+
                     removePizzaButton.setEnabled(false);
                     placeOrderButton.setEnabled(false);
                 })
@@ -134,11 +153,11 @@ public class CurrentOrderActivity extends AppCompatActivity {
                 .show();
     }
 
+
     /**
      * Updates the display of order totals
      */
     private void updateOrderTotals() {
-        Order currentOrder = AllOrders.getInstance().getCurrentOrder();
         double subtotal = currentOrder.getSubtotal();
         double tax = subtotal * SALES_TAX_RATE;
         double total = subtotal + tax;
@@ -159,6 +178,14 @@ public class CurrentOrderActivity extends AppCompatActivity {
                 .setMessage(message)
                 .setPositiveButton("OK", null)
                 .show();
+    }
+
+    /**
+     * Method called on Action for the home button, returns to home.
+     */
+    private void handleHomeButton() {
+        Intent intent = new Intent(CurrentOrderActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 
     /**

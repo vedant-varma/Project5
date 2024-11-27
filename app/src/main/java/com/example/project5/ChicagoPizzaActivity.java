@@ -1,8 +1,10 @@
 package com.example.project5;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -36,6 +38,7 @@ public class ChicagoPizzaActivity extends AppCompatActivity {
     private final PizzaFactory pizzaFactory;
     private ArrayAdapter<Topping> availableToppingsAdapter;
     private ArrayAdapter<Topping> chosenToppingsAdapter;
+    private ImageButton homeButton;
 
     /**
      * Constructor initializes the pizza factory
@@ -97,6 +100,7 @@ public class ChicagoPizzaActivity extends AppCompatActivity {
         selectToppingButton = findViewById(R.id.selectToppingButton);
         removeToppingButton = findViewById(R.id.removeToppingButton);
         addToOrderButton = findViewById(R.id.addToOrderButton);
+        homeButton = findViewById(R.id.homeButton);
 
         // Set initial state
         smallButton.setChecked(true);
@@ -170,6 +174,7 @@ public class ChicagoPizzaActivity extends AppCompatActivity {
         selectToppingButton.setOnClickListener(v -> handleAddTopping());
         removeToppingButton.setOnClickListener(v -> handleRemoveTopping());
         addToOrderButton.setOnClickListener(v -> handleAddToOrder());
+        homeButton.setOnClickListener(v -> handleHomeButton());
     }
 
     /**
@@ -300,5 +305,13 @@ public class ChicagoPizzaActivity extends AppCompatActivity {
                 .setMessage(message)
                 .setPositiveButton("OK", null)
                 .show();
+    }
+
+    /**
+     * Method called on Action for the home button, returns to home.
+     */
+    private void handleHomeButton() {
+        Intent intent = new Intent(ChicagoPizzaActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 }
