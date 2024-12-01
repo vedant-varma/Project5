@@ -11,8 +11,18 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+/**
+ * Controller class for the MainActivity page, main menu.
+ * @author Vedant Varma
+ * @author Jimmy Mishan
+ */
 public class MainActivity extends AppCompatActivity {
 
+    /**
+     * Initializes the activity, sets up UI components, and defines button actions.
+     *
+     * @param savedInstanceState The saved state of the activity, if any.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

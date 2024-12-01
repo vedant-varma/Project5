@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,7 +13,7 @@
         android:layout_marginStart="55dp"
         android:layout_marginTop="34dp"
         android:layout_marginEnd="55dp"
-        android:text="Placed Orders"
+        android:text="@string/placed_orders_title"
         android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,27 +48,11 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="31dp"
         android:layout_marginEnd="328dp"
-        android:text="Total ($): "
+        android:text="@string/total_label"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pizzasListView" />
-
-    <ImageButton
-        android:id="@+id/homeButton"
-        android:layout_width="67dp"
-        android:layout_height="65dp"
-        android:layout_marginStart="172dp"
-        android:layout_marginTop="127dp"
-        android:layout_marginEnd="172dp"
-        android:layout_marginBottom="16dp"
-        android:scaleType="fitXY"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pizzasListView"
-        app:srcCompat="@drawable/homebutton"
-        tools:srcCompat="@drawable/homebutton" />
 
     <Button
         android:id="@+id/cancelOrderButton"
@@ -77,9 +62,25 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="269dp"
         android:layout_marginBottom="92dp"
-        android:text="Cancel Order"
+        android:text="@string/cancel_order_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/totalLabel" />
+
+    <ImageButton
+        android:id="@+id/homeButton"
+        android:layout_width="72dp"
+        android:layout_height="67dp"
+        android:layout_marginStart="176dp"
+        android:layout_marginTop="125dp"
+        android:layout_marginEnd="163dp"
+        android:layout_marginBottom="16dp"
+        android:scaleType="fitXY"
+        android:contentDescription="@string/home_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pizzasListView"
+        android:src="@drawable/homebutton" />
 </androidx.constraintlayout.widget.ConstraintLayout>

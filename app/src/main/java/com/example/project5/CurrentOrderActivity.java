@@ -2,36 +2,79 @@ package com.example.project5;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import model.*;
+import model.AllOrders;
+import model.Order;
 
 /**
  * Activity for managing the current pizza order
  * Shows order details, allows removing pizzas and placing the order
- * @author Jimmy Mishan
- * @author Vedant Varma
  */
 public class CurrentOrderActivity extends AppCompatActivity {
-    private ListView pizzaListView;
+    /**
+     * RecyclerView to display the list of pizzas in the current order.
+     */
+    private RecyclerView pizzasRecyclerView;
+
+    /**
+     * TextView for displaying the subtotal value of the current order.
+     */
     private TextView subtotalValue;
+
+    /**
+     * TextView for displaying the sales tax value of the current order.
+     */
     private TextView salesTaxValue;
+
+    /**
+     * TextView for displaying the total value of the current order, including sales tax.
+     */
     private TextView orderTotalValue;
+
+    /**
+     * Button for removing the selected pizza from the current order.
+     */
     private Button removePizzaButton;
+
+    /**
+     * Button for placing the current order.
+     */
     private Button placeOrderButton;
-    private ArrayAdapter<Pizza> pizzaAdapter;
+
+    /**
+     * Adapter for managing and displaying the list of pizzas in the RecyclerView.
+     */
+    private PizzaAdapter pizzaAdapter;
+
+    /**
+     * Sales tax rate applied to the order total.
+     */
     private static final double SALES_TAX_RATE = 0.06625;
+
+    /**
+     * ImageButton for navigating back to the home screen.
+     */
     private ImageButton homeButton;
+
+    /**
+     * Singleton instance of AllOrders to manage all orders placed in the application.
+     */
     private AllOrders allOrders;
+
+    /**
+     * Current order being managed in this activity.
+     */
     private Order currentOrder;
+
 
     /**
      * Initializes the activity, sets up UI components and event handlers
@@ -45,7 +88,7 @@ public class CurrentOrderActivity extends AppCompatActivity {
         currentOrder = allOrders.getCurrentOrder();
 
         initializeViews();
-        setupListView();
+        setupRecyclerView();
         setupButtons();
         updateOrderTotals();
     }
@@ -54,7 +97,7 @@ public class CurrentOrderActivity extends AppCompatActivity {
      * Initializes all view references
      */
     private void initializeViews() {
-        pizzaListView = findViewById(R.id.pizzaListView);
+        pizzasRecyclerView = findViewById(R.id.pizzasRecyclerView);
         subtotalValue = findViewById(R.id.subtotalValue);
         salesTaxValue = findViewById(R.id.salesTaxValue);
         orderTotalValue = findViewById(R.id.orderTotalValue);
@@ -63,21 +106,18 @@ public class CurrentOrderActivity extends AppCompatActivity {
         homeButton = findViewById(R.id.homeButton);
 
         // Disable buttons initially if order is empty
-        boolean orderEmpty = AllOrders.getInstance().getCurrentOrder().getPizzas().isEmpty();
+        boolean orderEmpty = allOrders.getCurrentOrder().getPizzas().isEmpty();
         removePizzaButton.setEnabled(!orderEmpty);
         placeOrderButton.setEnabled(!orderEmpty);
     }
 
     /**
-     * Sets up the pizza ListView with its adapter
+     * Sets up the pizza RecyclerView with its adapter
      */
-    private void setupListView() {
-        pizzaAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_single_choice,
-                currentOrder.getPizzas());
-
-        pizzaListView.setAdapter(pizzaAdapter);
-        pizzaListView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+    private void setupRecyclerView() {
+        pizzaAdapter = new PizzaAdapter(this, currentOrder.getPizzas());
+        pizzasRecyclerView.setAdapter(pizzaAdapter);
+        pizzasRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     /**
@@ -93,13 +133,13 @@ public class CurrentOrderActivity extends AppCompatActivity {
      * Handles removing selected pizza from the order
      */
     private void handleRemovePizza() {
-        int position = pizzaListView.getCheckedItemPosition();
-        if (position != ListView.INVALID_POSITION) {
+        int position = pizzaAdapter.getSelectedPosition();
+        if (position != RecyclerView.NO_POSITION) {
             if (position < currentOrder.getPizzas().size()) {
                 currentOrder.getPizzas().remove(position);
-                pizzaAdapter.notifyDataSetChanged();
+                pizzaAdapter.notifyItemRemoved(position);
+                pizzaAdapter.clearSelection();
                 updateOrderTotals();
-                pizzaListView.clearChoices();
                 Toast.makeText(this,
                         "Pizza removed from order",
                         Toast.LENGTH_SHORT).show();
@@ -135,10 +175,8 @@ public class CurrentOrderActivity extends AppCompatActivity {
                     currentOrder = allOrders.getCurrentOrder();
 
                     // Reinitialize the adapter with the new currentOrder's pizzas list
-                    pizzaAdapter = new ArrayAdapter<>(CurrentOrderActivity.this,
-                            android.R.layout.simple_list_item_single_choice,
-                            currentOrder.getPizzas());
-                    pizzaListView.setAdapter(pizzaAdapter);
+                    pizzaAdapter = new PizzaAdapter(CurrentOrderActivity.this, currentOrder.getPizzas());
+                    pizzasRecyclerView.setAdapter(pizzaAdapter);
 
                     updateOrderTotals();
 
@@ -152,7 +190,6 @@ public class CurrentOrderActivity extends AppCompatActivity {
                 .setNegativeButton("No", null)
                 .show();
     }
-
 
     /**
      * Updates the display of order totals
@@ -198,7 +235,7 @@ public class CurrentOrderActivity extends AppCompatActivity {
         updateOrderTotals();
 
         // Update button states
-        boolean orderEmpty = AllOrders.getInstance().getCurrentOrder().getPizzas().isEmpty();
+        boolean orderEmpty = allOrders.getCurrentOrder().getPizzas().isEmpty();
         removePizzaButton.setEnabled(!orderEmpty);
         placeOrderButton.setEnabled(!orderEmpty);
     }

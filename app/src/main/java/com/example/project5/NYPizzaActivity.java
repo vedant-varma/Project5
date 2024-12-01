@@ -25,19 +25,84 @@ import model.*;
  * @author Vedant Varma
  */
 public class NYPizzaActivity extends AppCompatActivity {
+    /**
+     * Spinner for selecting the type of pizza.
+     */
     private Spinner typeSpinner;
+
+    /**
+     * RadioGroup for selecting the size of the pizza.
+     */
     private RadioGroup sizeGroup;
-    private RadioButton smallButton, mediumButton, largeButton;
+
+    /**
+     * RadioButton for selecting a small pizza size.
+     */
+    private RadioButton smallButton;
+
+    /**
+     * RadioButton for selecting a medium pizza size.
+     */
+    private RadioButton mediumButton;
+
+    /**
+     * RadioButton for selecting a large pizza size.
+     */
+    private RadioButton largeButton;
+
+    /**
+     * TextView for displaying the crust type of the selected pizza.
+     */
     private TextView crustLabel;
+
+    /**
+     * ListView for displaying the list of available toppings for customization.
+     */
     private ListView availableToppingsListView;
+
+    /**
+     * ListView for displaying the list of toppings chosen for the current pizza.
+     */
     private ListView chosenToppingsListView;
+
+    /**
+     * Button for adding a topping to the current pizza.
+     */
     private Button selectToppingButton;
+
+    /**
+     * Button for removing a topping from the current pizza.
+     */
     private Button removeToppingButton;
+
+    /**
+     * Button for adding the current pizza to the order.
+     */
     private Button addToOrderButton;
+
+    /**
+     * The pizza currently being customized in the activity.
+     */
     private Pizza currentPizza;
+
+    /**
+     * Factory for creating New York-style pizzas.
+     */
     private final PizzaFactory pizzaFactory;
+
+    /**
+     * Adapter for managing the available toppings list.
+     */
     private ArrayAdapter<Topping> availableToppingsAdapter;
+
+    /**
+     * Adapter for managing the chosen toppings list.
+     */
     private ArrayAdapter<Topping> chosenToppingsAdapter;
+
+    /**
+     * ImageButton for navigating back to the home screen.
+     */
     private ImageButton homeButton;
 
     /**
@@ -260,6 +325,7 @@ public class NYPizzaActivity extends AppCompatActivity {
     private void handleAddToOrder() {
         if (currentPizza != null) {
             AllOrders.getInstance().getCurrentOrder().addPizzaToOrder(currentPizza);
+            currentPizza = null;
             resetForm();
             Toast.makeText(this,
                     "Pizza added to order successfully!",
@@ -292,16 +358,21 @@ public class NYPizzaActivity extends AppCompatActivity {
      * Resets the form to its initial state
      */
     private void resetForm() {
+        // Ensure currentPizza is null before changing RadioButton selection
+        currentPizza = null;
+        // Remove listener temporarily
+        sizeGroup.setOnCheckedChangeListener(null);
+
         typeSpinner.setSelection(0);
         smallButton.setChecked(true);
-        currentPizza = null;
+
         crustLabel.setText("Crust: ");
         resetToppingsLists();
         selectToppingButton.setEnabled(false);
         removeToppingButton.setEnabled(false);
         addToOrderButton.setEnabled(false);
-        availableToppingsListView.clearChoices();
-        chosenToppingsListView.clearChoices();
+        // Re-add listener
+        setupRadioGroup();
     }
 
     /**

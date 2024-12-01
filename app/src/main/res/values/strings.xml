@@ -22,6 +22,20 @@
     <string name="remove_topping">Remove Topping</string>
     <string name="add_to_order">Add to Order</string>
 
+    <!-- Current Order Page -->
+    <string name="subtotal">Subtotal:</string>
+    <string name="sales_tax_label">Sales Tax (6.625%):</string>
+    <string name="order_total_label">Order Total:</string>
+    <string name="remove_pizza_button">Remove Selected Pizza</string>
+    <string name="place_order_button">Place Order</string>
+    <string name="home_button_description">Go to Home</string>
+
+    <!-- Placed Orders Page -->
+    <string name="placed_orders_title">Placed Orders</string>
+    <string name="total_label">Total ($):</string>
+    <string name="cancel_order_button">Cancel Order</string>
+    <string name="home_button">Go to Home</string>
+
     <!-- Messages -->
     <string name="topping_added">Topping added</string>
     <string name="topping_removed">Topping removed</string>
