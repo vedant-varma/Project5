@@ -2,6 +2,7 @@ package com.example.project5;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -243,10 +244,27 @@ public class NYPizzaActivity extends AppCompatActivity {
     }
 
     /**
+     * Sets up the toast message and disables interactions for specialty pizza toppings
+     * Method is called when a specialty pizza is selected to prevent user from attempting
+     * to add toppings
+     */
+    private void disableAndSetupToppingLists() {
+        // Disable both list views
+        availableToppingsListView.setEnabled(false);
+        chosenToppingsListView.setEnabled(false);
+
+        // Show toast message when attempting to modify toppings
+        Toast.makeText(this,
+                "Select \"Build Your Own\" pizza to change toppings",
+                Toast.LENGTH_SHORT).show();
+    }
+
+    /**
      * Handles pizza type selection and updates the UI accordingly
      * @param selectedType the type of pizza selected
      */
     private void handlePizzaTypeSelection(String selectedType) {
+        if (selectedType == null) return;
         switch (selectedType) {
             case "Deluxe":
                 currentPizza = pizzaFactory.createDeluxe();
@@ -261,19 +279,27 @@ public class NYPizzaActivity extends AppCompatActivity {
                 currentPizza = pizzaFactory.createBuildYourOwn();
                 selectToppingButton.setEnabled(true);
                 removeToppingButton.setEnabled(true);
+                availableToppingsListView.setEnabled(true);
+                chosenToppingsListView.setEnabled(true);
                 break;
             default:
                 currentPizza = null;
                 return;
         }
-
+        // Set size and update UI elements
         if (currentPizza != null) {
             currentPizza.setSize(getSelectedSize());
             crustLabel.setText(getString(R.string.crust_label, currentPizza.getCrust().toString()));
             resetToppingsLists();
+
             boolean isBuildYourOwn = selectedType.equals("Build Your Own");
             selectToppingButton.setEnabled(isBuildYourOwn);
             removeToppingButton.setEnabled(isBuildYourOwn);
+
+            if (!isBuildYourOwn) { // Disable topping modifications for specialty pizzas
+                disableAndSetupToppingLists();
+            }
+
             addToOrderButton.setEnabled(true);
             updatePrice();
         }
