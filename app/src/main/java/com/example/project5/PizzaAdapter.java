@@ -27,25 +27,24 @@ import model.BBQChicken;
 public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.PizzaViewHolder> {
 
     /**
-     * List of Pizza objects to be displayed.
+     * List of Pizza objects to be displayed
      */
     private List<Pizza> pizzaList;
 
     /**
-     * Position of the currently selected item in the RecyclerView.
+     * Position of the currently selected item in the RecyclerView
      */
     private int selectedPosition = RecyclerView.NO_POSITION;
 
     /**
-     * Context for inflating layout resources.
+     * Context for inflating layout resources
      */
     private Context context;
 
     /**
-     * Constructor for the PizzaAdapter.
-     *
-     * @param context  the context for layout inflation.
-     * @param pizzaList the list of Pizza objects to display.
+     * Constructor for the PizzaAdapter
+     * @param context the context for layout inflation
+     * @param pizzaList the list of Pizza objects to display
      */
     public PizzaAdapter(Context context, List<Pizza> pizzaList) {
         this.context = context;
@@ -53,9 +52,8 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.PizzaViewHol
     }
 
     /**
-     * Called when a new ViewHolder is created.
-     *
-     * @param parent   the parent ViewGroup.
+     * Called when a new ViewHolder is created
+     * @param parent the parent ViewGroup.
      * @param viewType the view type of the new View.
      * @return a new instance of PizzaViewHolder.
      */
@@ -67,9 +65,9 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.PizzaViewHol
     }
 
     /**
-     * Binds data to a ViewHolder at a given position.
+     * Binds data to a ViewHolder at a given position
      *
-     * @param holder   the ViewHolder to bind data to.
+     * @param holder the ViewHolder to bind data to
      * @param position the position of the item in the data set.
      */
     @Override
@@ -95,8 +93,7 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.PizzaViewHol
     }
 
     /**
-     * Returns the total number of items in the data set.
-     *
+     * Returns the total number of items in the data set
      * @return the item count.
      */
     @Override
@@ -105,9 +102,8 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.PizzaViewHol
     }
 
     /**
-     * Returns the position of the currently selected item.
-     *
-     * @return the selected position or NO_POSITION if none is selected.
+     * Returns the position of the currently selected item
+     * @return the selected position or NO_POSITION if none is selected
      */
     public int getSelectedPosition() {
         return selectedPosition;
@@ -140,7 +136,6 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.PizzaViewHol
 
         /**
          * Constructor for PizzaViewHolder.
-         *
          * @param itemView the itemView representing a single item.
          */
         public PizzaViewHolder(@NonNull View itemView) {
@@ -152,7 +147,6 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.PizzaViewHol
 
         /**
          * Handles click events for the itemView.
-         *
          * @param v the clicked View.
          */
         @Override

@@ -43,4 +43,16 @@
     <string name="max_toppings_title">Maximum Toppings</string>
     <string name="max_toppings_message">Cannot add more than 7 toppings to a pizza.</string>
     <string name="price_format">Price: $%.2f</string>
+    <string name="ru_pizzeria">RU PIZZERIA</string>
+    <string name="small">Small</string>
+    <string name="medium">Medium</string>
+    <string name="large">Large</string>
+    <string name="crust">Crust:</string>
+    <string name="topping_options">Topping Options</string>
+    <string name="selected_toppings">Selected Toppings</string>
+    <string name="pizza_image">Pizza Image</string>
+    <string name="pizza_description">Pizza Description</string>
+    <string name="this_is_a_home_button">This is a home button</string>
+    <string name="this_is_a_ny_pizza_button">This is a NY pizza button</string>
+    <string name="this_is_a_chicago_pizza_button">This is a Chicago pizza button</string>
 </resources>

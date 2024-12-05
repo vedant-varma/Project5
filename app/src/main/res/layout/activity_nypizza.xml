@@ -45,21 +45,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Small" />
+            android:text="@string/small" />
 
         <RadioButton
             android:id="@+id/mediumButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Medium" />
+            android:text="@string/medium" />
 
         <RadioButton
             android:id="@+id/largeButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Large" />
+            android:text="@string/large" />
     </RadioGroup>
 
     <EditText
@@ -71,7 +71,7 @@
         android:layout_marginEnd="182dp"
         android:ems="10"
         android:inputType="text"
-        android:text="Crust: "
+        android:text="@string/crust"
         android:enabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -82,7 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="Topping Options"
+        android:text="@string/topping_options"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/availableToppingsListView"
         app:layout_constraintStart_toStartOf="parent" />
@@ -92,7 +92,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="37dp"
-        android:text="Selected Toppings"
+        android:text="@string/selected_toppings"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/chosenToppingsListView"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -124,7 +124,7 @@
         android:layout_marginStart="19dp"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="22dp"
-        android:text="Add Topping"
+        android:text="@string/add_topping"
         app:layout_constraintBottom_toTopOf="@+id/addToOrderButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/availableToppingsListView" />
@@ -136,7 +136,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="37dp"
         android:layout_marginBottom="22dp"
-        android:text="Remove Topping"
+        android:text="@string/remove_topping"
         app:layout_constraintBottom_toTopOf="@+id/addToOrderButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chosenToppingsListView" />
@@ -148,7 +148,7 @@
         android:layout_marginStart="123dp"
         android:layout_marginEnd="159dp"
         android:layout_marginBottom="16dp"
-        android:text="Add to Order"
+        android:text="@string/add_to_order"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

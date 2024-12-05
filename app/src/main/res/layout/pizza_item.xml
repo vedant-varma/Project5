@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="8dp"
-    android:gravity="center_vertical">
+    android:gravity="center_vertical"
+    tools:ignore="UseCompoundDrawables">
 
     <ImageView
         android:id="@+id/pizzaImageView"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:contentDescription="Pizza Image"
+        android:contentDescription="@string/pizza_image"
         android:src="@drawable/orderbasket" />
 
     <TextView
@@ -20,6 +22,7 @@
         android:layout_weight="1"
         android:paddingStart="16dp"
         android:textSize="16sp"
-        android:text="Pizza Description" />
+        android:text="@string/pizza_description"
+        tools:ignore="RtlSymmetry" />
 
 </LinearLayout>

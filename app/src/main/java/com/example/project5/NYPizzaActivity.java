@@ -27,82 +27,82 @@ import model.*;
  */
 public class NYPizzaActivity extends AppCompatActivity {
     /**
-     * Spinner for selecting the type of pizza.
+     * Spinner for selecting the type of pizza
      */
     private Spinner typeSpinner;
 
     /**
-     * RadioGroup for selecting the size of the pizza.
+     * RadioGroup for selecting the size of the pizza
      */
     private RadioGroup sizeGroup;
 
     /**
-     * RadioButton for selecting a small pizza size.
+     * RadioButton for selecting a small pizza size
      */
     private RadioButton smallButton;
 
     /**
-     * RadioButton for selecting a medium pizza size.
+     * RadioButton for selecting a medium pizza size
      */
     private RadioButton mediumButton;
 
     /**
-     * RadioButton for selecting a large pizza size.
+     * RadioButton for selecting a large pizza size
      */
     private RadioButton largeButton;
 
     /**
-     * TextView for displaying the crust type of the selected pizza.
+     * TextView for displaying the crust type of the selected pizza
      */
     private TextView crustLabel;
 
     /**
-     * ListView for displaying the list of available toppings for customization.
+     * ListView for displaying the list of available toppings for customization
      */
     private ListView availableToppingsListView;
 
     /**
-     * ListView for displaying the list of toppings chosen for the current pizza.
+     * ListView for displaying the list of toppings chosen for the current pizza
      */
     private ListView chosenToppingsListView;
 
     /**
-     * Button for adding a topping to the current pizza.
+     * Button for adding a topping to the current pizza
      */
     private Button selectToppingButton;
 
     /**
-     * Button for removing a topping from the current pizza.
+     * Button for removing a topping from the current pizza
      */
     private Button removeToppingButton;
 
     /**
-     * Button for adding the current pizza to the order.
+     * Button for adding the current pizza to the order
      */
     private Button addToOrderButton;
 
     /**
-     * The pizza currently being customized in the activity.
+     * The pizza currently being customized in the activity
      */
     private Pizza currentPizza;
 
     /**
-     * Factory for creating New York-style pizzas.
+     * Factory for creating New York-style pizzas
      */
     private final PizzaFactory pizzaFactory;
 
     /**
-     * Adapter for managing the available toppings list.
+     * Adapter for managing the available toppings list
      */
     private ArrayAdapter<Topping> availableToppingsAdapter;
 
     /**
-     * Adapter for managing the chosen toppings list.
+     * Adapter for managing the chosen toppings list
      */
     private ArrayAdapter<Topping> chosenToppingsAdapter;
 
     /**
-     * ImageButton for navigating back to the home screen.
+     * ImageButton for navigating back to the home screen
      */
     private ImageButton homeButton;
 

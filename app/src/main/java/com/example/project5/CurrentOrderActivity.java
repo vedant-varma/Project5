@@ -21,42 +21,42 @@ import model.Order;
  */
 public class CurrentOrderActivity extends AppCompatActivity {
     /**
-     * RecyclerView to display the list of pizzas in the current order.
+     * RecyclerView to display the list of pizzas in the current order
      */
     private RecyclerView pizzasRecyclerView;
 
     /**
-     * TextView for displaying the subtotal value of the current order.
+     * TextView for displaying the subtotal value of the current order
      */
     private TextView subtotalValue;
 
     /**
-     * TextView for displaying the sales tax value of the current order.
+     * TextView for displaying the sales tax value of the current order
      */
     private TextView salesTaxValue;
 
     /**
-     * TextView for displaying the total value of the current order, including sales tax.
+     * TextView for displaying the total value of the current order, including sales tax
      */
     private TextView orderTotalValue;
 
     /**
-     * Button for removing the selected pizza from the current order.
+     * Button for removing the selected pizza from the current order
      */
     private Button removePizzaButton;
 
     /**
-     * Button for placing the current order.
+     * Button for placing the current order
      */
     private Button placeOrderButton;
 
     /**
-     * Adapter for managing and displaying the list of pizzas in the RecyclerView.
+     * Adapter for managing and displaying the list of pizzas in the RecyclerView
      */
     private PizzaAdapter pizzaAdapter;
 
     /**
-     * Sales tax rate applied to the order total.
+     * Sales tax rate that applies to the order total.
      */
     private static final double SALES_TAX_RATE = 0.06625;
 

@@ -27,43 +27,43 @@ import model.Pizza;
  */
 public class PlacedOrdersActivity extends Activity {
     /**
-     * Spinner for selecting an order by its ID.
+     * Spinner for selecting an order by its ID
      */
     private Spinner orderSpinner;
 
     /**
-     * ListView to display the list of pizzas in the selected order.
+     * ListView to display the list of pizzas in the selected order
      */
     private ListView pizzasListView;
 
     /**
-     * TextView to display the total cost of the selected order.
+     * TextView to display the total cost of the selected order
      */
     private TextView totalLabel;
 
     /**
-     * ImageButton to navigate back to the home screen.
+     * ImageButton to navigate back to the home screen
      */
     private ImageButton homeButton;
 
     /**
-     * Button to cancel the selected order.
+     * Button to cancel the selected order
      */
     private Button cancelOrderButton;
 
     /**
-     * Adapter for managing the list of pizzas displayed in the ListView.
+     * Adapter for managing the list of pizzas displayed in the ListView
      */
     private ArrayAdapter<Pizza> pizzaAdapter;
 
     /**
-     * Singleton instance of AllOrders, which manages all placed orders.
+     * Singleton instance of AllOrders, which manages all placed orders
      */
     private AllOrders allOrders;
 
     /**
-     * Initializes the activity, sets up the layout, and populates views.
-     * @param savedInstanceState the saved state of the activity, if any.
+     * Initializes the activity, sets up the layout, and then populates views
+     * @param savedInstanceState the saved state of the activity, if there is any
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -80,7 +80,7 @@ public class PlacedOrdersActivity extends Activity {
     }
 
     /**
-     * Updates the total cost label for the currently selected order.
+     * Updates the total cost label for the currently selected order
      */
     private void updateOrderTotals() {
         Integer selectedOrderNumber = (Integer) orderSpinner.getSelectedItem();
@@ -114,7 +114,7 @@ public class PlacedOrdersActivity extends Activity {
     }
 
     /**
-     * Handles the action of the cancel button to remove the selected order.
+     * Handles the action of the cancel button to remove the selected order
      */
     private void handleCancelButton() {
         Integer selectedOrderNumber = (Integer) orderSpinner.getSelectedItem();
@@ -171,7 +171,7 @@ public class PlacedOrdersActivity extends Activity {
     }
 
     /**
-     * Initializes the views and sets the initial state for UI elements.
+     * Initializes the views and sets the initial state for UI elements
      */
     private void initializeViews() {
         orderSpinner = findViewById(R.id.orderSpinner);
